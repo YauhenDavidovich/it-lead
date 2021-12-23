@@ -1,14 +1,12 @@
-import axios from "axios";
+ async function getData(data: string) {
+    try {
+        let response =  await fetch(`/data/${data}.json`);
+        return await  response.json();
 
-const instance = axios.create({
-    baseURL:
-        'https://localhost:8080/recommendations/'
-});
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
-export const dataApi = {
-    accept(id: string) {
-        return instance.put(`/${id}/accept`)},
-    reject(id: string) {
-        return instance.put(`/${id}/reject`)},
-};
+ export default  getData
