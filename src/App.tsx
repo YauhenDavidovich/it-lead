@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchDataTC} from "./bll/dataReducer";
+import {AppRootStateType} from "./bll/store";
+import {median} from "./utils/median";
+import {InputNumber} from "./InputNumber";
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const data = useSelector<AppRootStateType, Array<number>>(state => state.data.data)
+
+  useEffect(() => {
+    dispatch(fetchDataTC("data-1234"));
+  }, [dispatch])
+
+  console.log(data)
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <div className="meanWindow"></div>
+        <div className="medianWindow">{median(data)}</div>
+        <div className="stdDeviationWindow"></div>
+        <div className="modeWindow"></div>
+      </div>
+
+      <div>
+        <InputNumber/>
+      </div>
     </div>
+
   );
 }
 

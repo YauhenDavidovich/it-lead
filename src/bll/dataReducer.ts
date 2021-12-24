@@ -2,19 +2,28 @@ import {Dispatch} from 'redux'
 import getData from "../dal/api";
 
 export type InitialStateType  = {
-    data: number[];
+    data: number[] | [];
 }
+
+
 
 const initialState = {
     data: []
 }
 
-export const dataReducer = (state = initialState, action: ActionsType) => {
+
+export const dataReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'SET-DATA':
+        case SET_DATA:
             return {
                 ...state,
                 data:  action.data.data
+            }
+
+        case ADD_DATA:
+            return {
+                ...state,
+                data: [...state.data, action.number]
             }
 
 
@@ -23,7 +32,13 @@ export const dataReducer = (state = initialState, action: ActionsType) => {
     }
 }
 
-export const setDataAC = (data: InitialStateType) => ({type: 'SET-DATA', data} as const)
+
+const SET_DATA = "/data/SET-DATA"
+const ADD_DATA = "/data/ADD-DATA"
+
+
+export const setDataAC = (data: InitialStateType) => ({type: SET_DATA, data} as const)
+export const addDataAC = (number: number) => ({type: ADD_DATA, number} as const)
 
 // thunks
 export const fetchDataTC = (data: string) => {
@@ -35,11 +50,17 @@ export const fetchDataTC = (data: string) => {
     }
 }
 
-
+export const addDataTC = (number: number) => {
+    return (dispatch: ThunkDispatch) => {
+        dispatch(addDataAC(number))
+    }
+}
 
 
 // types
 export type SetDataActionType = ReturnType<typeof setDataAC>;
+export type AddDataActionType = ReturnType<typeof addDataAC>;
 type ActionsType =
     | SetDataActionType
+    | AddDataActionType
 type ThunkDispatch = Dispatch<ActionsType>
