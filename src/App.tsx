@@ -5,6 +5,7 @@ import {fetchDataTC} from "./bll/dataReducer";
 import {AppRootStateType} from "./bll/store";
 import {median} from "./utils/median";
 import {InputNumber} from "./InputNumber";
+import {mean} from "./utils/mean";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function App() {
     return (
     <div className="App">
       <div>
-        <div className="meanWindow"></div>
+        <div className="meanWindow">{mean(data)}</div>
         <div className="medianWindow">{median(data)}</div>
         <div className="stdDeviationWindow"></div>
         <div className="modeWindow"></div>
