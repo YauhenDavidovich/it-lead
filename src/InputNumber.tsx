@@ -33,10 +33,9 @@ export const InputNumber = () => {
         {({errors, touched}) => (
             <Form>
                 <Field name="number"/>
-                {errors.number && touched.number ? (
+                {errors.number && touched.number && (
                     <div>{errors.number}</div>
-                ) : null}
-
+                )}
                 <button
                     type={'submit'}>
                     Submit

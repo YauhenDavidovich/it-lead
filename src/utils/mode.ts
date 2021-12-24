@@ -1,32 +1,32 @@
-export const getMode = (items: Array<number>) => {
+export const getMultiMode = (items: Array<number>): number[] => {
     // Go through the array
-    type ObjectNumbers = {
-        index: number;
+    type SetOfNumbers = {
+        [key: string]: number
     }
-    if (items.length === 0) return -1 // error
+    if (items.length === 0) return []
 
-    const store = {} as ObjectNumbers
+    const store: SetOfNumbers = {}
+
     let maxCount = 0;
-    let maxIndex = -1;
+    let res: number[] = [];
 
     items.forEach((item: number, index: number) => {
+        if (!store[item]) {
+            store[item] = 1
+        } else {
+            store[item] += 1
+        }
 
-        // @ts-ignore
-        if (!store[item]) {store[item] = 0}
-
-        // update value
-        // @ts-ignore
-        store[item] += 1
-
-        // @ts-ignore
-        if (store[item] > maxCount) {
-            maxIndex = index
-            // @ts-ignore
+        if(store[item] > maxCount) {
             maxCount = store[item]
         }
     })
 
-    // NOTE: this code does not consider if there are two modes.
+    Object.keys(store).forEach(n => {
+        if(store[n] === maxCount) {
+            res.push(+n)
+        }
+    })
 
-    return items[maxIndex]
+    return res
 }
