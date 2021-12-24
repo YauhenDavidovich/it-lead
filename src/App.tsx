@@ -6,6 +6,8 @@ import {AppRootStateType} from "./bll/store";
 import {median} from "./utils/median";
 import {InputNumber} from "./InputNumber";
 import {mean} from "./utils/mean";
+import {getStandardDeviation} from "./utils/stndDeviation";
+import {getMode} from "./utils/mode";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,19 +18,23 @@ function App() {
   }, [dispatch])
 
   console.log(data)
-    return (
-    <div className="App">
-      <div>
-        <div className="meanWindow">{mean(data)}</div>
-        <div className="medianWindow">{median(data)}</div>
-        <div className="stdDeviationWindow"></div>
-        <div className="modeWindow"></div>
-      </div>
+    return ( <>
+          {data && data ? (<div className="App">
+            <div>
+              <div className="meanWindow">{mean(data)}</div>
+              <div className="medianWindow">{median(data)}</div>
+              <div className="stdDeviationWindow">{getStandardDeviation(data)}</div>
+              <div className="modeWindow">{getMode(data)}</div>
+            </div>
 
-      <div>
-        <InputNumber/>
-      </div>
-    </div>
+            <div>
+              <InputNumber/>
+            </div>
+          </div>) : null}
+
+    </>
+
+
 
   );
 }
