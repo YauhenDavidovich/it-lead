@@ -1,38 +1,160 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    height: 50vh;
+    background-color: dodgerblue;
+    padding: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.controlsBody {
+    background-color: navy;
+    padding: 40px;
+    height: 50vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.wrapper {
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.controls {
+    height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.controlsWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.circleRow {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.circle {
+    justify-content: center;
+    max-width: 250px;
+    min-height: 250px;
+    border: 5px solid grey;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    display: flex;
+    background-color: slategrey;
+    flex-direction: column;
+}
+
+
+.counterTitle {
+    color: dodgerblue;
+    font-size: 14px;
+}
+
+.counterValue {
+    color: white;
+    font-size: 18px;
+}
+
+.inputGroup {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 40px;
+}
+
+
+.inputField {
+    display: inline-block;
+    width: 215px;
+    padding: 10px 10px 10px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #377d6a;
+    background: #efefef;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    text-indent: 70px;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.inputField:focus,
+.inputField:active {
+    color: #377d6a;
+    text-indent: 0;
+    background: #fff;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.error {
+    position: absolute;
+    top: 50px;
+    font-weight: 400;
+    color: white;
+    padding: 10px 0 10px 15px;
+}
+
+button {
+    margin: 0 5px;
+    width: 250px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+    background-image: linear-gradient(15deg, orange 20%, yellow 74%);
+    background-size: 200% 100%;
+    background-position: left;
+    background-repeat: no-repeat;
+    transition: 500ms;
+    color: white;
+}
+
+
+button:hover {
+    background-position: right;
+}
+
+button:hover:before {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+button:focus {
+    outline: none;
 }

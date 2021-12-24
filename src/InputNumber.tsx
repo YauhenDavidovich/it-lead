@@ -20,23 +20,22 @@ export const InputNumber = () => {
 
     return (<Formik
         initialValues={{
-            number: 0,
+            number: undefined,
         }}
         validationSchema={InputSchema}
         onSubmit={async (values, {resetForm}) => {
             await dispatch(addDataTC(Number(values.number)))
-            console.log(typeof Number(values.number))
-
             resetForm()
         }}
     >
         {({errors, touched}) => (
-            <Form>
-                <Field name="number"/>
+            <Form className="inputGroup">
+                <Field name="number" className="inputField"/>
                 {errors.number && touched.number && (
-                    <div>{errors.number}</div>
+                    <div className="error">{errors.number}</div>
                 )}
                 <button
+                    className="buttonInput"
                     type={'submit'}>
                     Submit
                 </button>

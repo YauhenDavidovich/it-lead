@@ -1,4 +1,5 @@
 export const getMultiMode = (items: Array<number>): number[] => {
+
     // Go through the array
     type SetOfNumbers = {
         [key: string]: number
@@ -17,16 +18,17 @@ export const getMultiMode = (items: Array<number>): number[] => {
             store[item] += 1
         }
 
-        if(store[item] > maxCount) {
+        if (store[item] > maxCount) {
             maxCount = store[item]
         }
     })
 
     Object.keys(store).forEach(n => {
-        if(store[n] === maxCount) {
+        if (store[n] === maxCount) {
             res.push(+n)
         }
     })
 
     return res
+
 }
